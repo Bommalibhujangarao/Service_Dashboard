@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VARUN MARUTI — Advisor KPI Dashboard</title>
+<title>VARUN MARUTI — Technician KPI Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -15,7 +15,6 @@
   --s3:#eef0f8;
   --dk1:#111827;
   --dk2:#1a2235;
-  --dk3:#0d1520;
   --b1:rgba(0,0,0,.06);
   --b2:rgba(0,0,0,.10);
   --t1:#0f172a;
@@ -57,7 +56,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 
 /* TOPBAR */
 .topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--s1);border-bottom:1px solid var(--b1);box-shadow:0 1px 10px rgba(0,0,0,.06);flex-shrink:0;}
-.topbar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--red) 30%,var(--violet) 70%,transparent);opacity:.35;}
+.topbar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--teal) 30%,var(--violet) 70%,transparent);opacity:.35;}
 .topbar-left{display:flex;align-items:center;gap:10px}
 .hamburger{width:36px;height:36px;border-radius:9px;background:var(--s2);border:1px solid var(--b2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;flex-shrink:0;transition:background .2s;}
 .hamburger:hover{background:var(--s3)}
@@ -66,37 +65,37 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 .ttitle{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:var(--t1)}
-.ttitle span{color:var(--red)}
+.ttitle span{color:var(--teal)}
 .tbadge{display:flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--b2);border-radius:30px;padding:4px 10px;font-size:10px;color:var(--t2);font-weight:500;white-space:nowrap;}
 .tbadge b{color:var(--teal);font-family:'Space Mono',monospace;font-weight:600}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);animation:pulse 2s ease infinite}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 7px var(--teal);animation:pulse 2s ease infinite}
 
 /* SIDEBAR — dark */
 .sidebar-backdrop{position:fixed;inset:0;z-index:199;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s ease;}
 .sidebar-backdrop.open{opacity:1;pointer-events:auto}
 .sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sw);max-width:88vw;z-index:200;background:var(--dk1);border-right:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;align-items:center;padding:calc(var(--topbar-h) + 16px) 14px calc(24px + var(--safe-bottom));gap:12px;overflow-y:auto;-webkit-overflow-scrolling:touch;transform:translateX(-110%);transition:transform .32s cubic-bezier(.4,0,.2,1);will-change:transform;}
-.sidebar::after{content:'';position:absolute;top:0;right:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,51,74,.4) 35%,rgba(124,58,237,.35) 65%,transparent);}
+.sidebar::after{content:'';position:absolute;top:0;right:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(8,145,178,.4) 35%,rgba(124,58,237,.35) 65%,transparent);}
 .sidebar.open{transform:translateX(0)}
 .sidebar::-webkit-scrollbar{width:0}
-.logo-wrap{width:72px;height:72px;border-radius:16px;overflow:hidden;background:#fff;flex-shrink:0;box-shadow:0 0 32px rgba(232,51,74,.2),0 8px 24px rgba(0,0,0,.5);border:1px solid rgba(232,51,74,.2);}
+.logo-wrap{width:72px;height:72px;border-radius:16px;overflow:hidden;background:#fff;flex-shrink:0;box-shadow:0 0 32px rgba(8,145,178,.2),0 8px 24px rgba(0,0,0,.5);}
 .logo-wrap img{width:100%;height:100%;object-fit:contain}
 .brand{text-align:center}
 .brand-name{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:2px;color:#fff;text-transform:uppercase}
-.brand-sub{font-size:8.5px;color:var(--red);letter-spacing:3.5px;text-transform:uppercase;font-weight:600;margin-top:3px}
+.brand-sub{font-size:8.5px;color:var(--teal);letter-spacing:3.5px;text-transform:uppercase;font-weight:600;margin-top:3px}
 .divider{width:100%;height:1px;background:linear-gradient(to right,transparent,rgba(255,255,255,.1),transparent);flex-shrink:0}
 .flabel{align-self:flex-start;font-size:8px;font-weight:700;letter-spacing:2.5px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-bottom:2px}
 .swrap{width:100%;position:relative}
 .swrap::after{content:'▾';position:absolute;right:10px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.4);pointer-events:none;font-size:11px}
 .swrap select{width:100%;background:rgba(255,255,255,.06);color:#e8eeff;border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:10px 28px 10px 11px;font-family:'DM Sans',sans-serif;font-size:13px;appearance:none;cursor:pointer;outline:none;-webkit-appearance:none;}
-.swrap select:focus{border-color:rgba(232,51,74,.5);box-shadow:0 0 0 3px rgba(232,51,74,.1)}
+.swrap select:focus{border-color:rgba(8,145,178,.5);box-shadow:0 0 0 3px rgba(8,145,178,.1)}
 .swrap select option{background:#111827}
 .channel-toggle{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:4px;}
 .ch-btn{padding:10px 4px;border:none;border-radius:9px;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;cursor:pointer;transition:all .25s;color:rgba(255,255,255,.45);background:transparent;text-transform:uppercase;-webkit-tap-highlight-color:transparent;}
-.ch-btn.active{background:linear-gradient(135deg,var(--red),#b8162a);color:#fff;box-shadow:0 4px 16px rgba(232,51,74,.4);}
+.ch-btn.active{background:linear-gradient(135deg,var(--teal),#066a87);color:#fff;box-shadow:0 4px 16px rgba(8,145,178,.4);}
 
-/* PROFILE CARD in sidebar */
+/* PROFILE CARD */
 .pcard{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;align-items:center;padding-bottom:14px;}
-.pbanner{width:100%;height:40px;background:linear-gradient(135deg,rgba(232,51,74,.3),rgba(124,58,237,.3))}
+.pbanner{width:100%;height:40px;background:linear-gradient(135deg,rgba(8,145,178,.3),rgba(124,58,237,.3))}
 .aring{width:64px;height:64px;border-radius:50%;border:3px solid var(--dk1);background:var(--dk2);overflow:hidden;margin-top:-32px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.07);flex-shrink:0;}
 .aring img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .aicon{font-size:24px;line-height:1}
@@ -119,10 +118,10 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 
 /* SECTION TITLE */
 .section-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;color:var(--t2);letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
-.section-title::before{content:'';width:2px;height:14px;background:var(--red);border-radius:2px;flex-shrink:0;}
+.section-title::before{content:'';width:2px;height:14px;background:var(--teal);border-radius:2px;flex-shrink:0;}
 .section-title::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(0,0,0,.08),transparent)}
 
-/* STAT GRID — dark cards */
+/* STAT CARDS — dark */
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .stat-card{background:var(--dk1);border:1px solid rgba(255,255,255,.06);border-radius:var(--card-radius);padding:12px 14px;display:flex;flex-direction:column;gap:5px;position:relative;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.12);animation:fadeSlideIn .3s ease both;}
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
@@ -130,6 +129,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .stat-card.teal::before{background:linear-gradient(90deg,var(--teal),rgba(8,145,178,.1))}
 .stat-card.green::before{background:linear-gradient(90deg,var(--green),rgba(5,150,105,.1))}
 .stat-card.amber::before{background:linear-gradient(90deg,var(--amber),rgba(217,119,6,.1))}
+.stat-card.violet::before{background:linear-gradient(90deg,var(--violet),rgba(124,58,237,.1))}
+.stat-card.pink::before{background:linear-gradient(90deg,var(--pink),rgba(219,39,119,.1))}
 .sc-label{font-size:8.5px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.4)}
 .sc-value{font-family:'Space Mono',monospace;font-size:20px;font-weight:700;color:#fff;line-height:1}
 .sc-sub{font-size:9.5px;color:rgba(255,255,255,.4)}
@@ -138,7 +139,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .sc-badge.warn{background:rgba(217,119,6,.2);color:#fbbf24}
 .sc-badge.bad{background:rgba(232,51,74,.2);color:#ff6b80}
 
-/* GAUGE ROW — dark cards */
+/* GAUGE — dark cards */
 .gauge-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .gauge-card{background:var(--dk1);border:1px solid rgba(255,255,255,.06);border-radius:var(--card-radius);padding:12px 10px;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(0,0,0,.1);}
 .gauge-label{font-size:8px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center;line-height:1.4}
@@ -154,6 +155,21 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .chart-wrap canvas{max-height:180px}
 .chart-wrap.tall canvas{max-height:200px}
 
+/* PERFORMANCE METRICS — extra section for technician */
+.tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tech-card{background:var(--dk1);border:1px solid rgba(255,255,255,.06);border-radius:var(--card-radius);padding:12px 14px;display:flex;flex-direction:column;gap:4px;box-shadow:0 4px 14px rgba(0,0,0,.1);animation:fadeSlideIn .3s ease both;}
+.tech-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.tc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.tc-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.tc-badge{font-size:8px;font-weight:700;padding:2px 6px;border-radius:12px;font-family:'Space Mono',monospace}
+.tc-badge.A{background:rgba(5,150,105,.2);color:#34d399}
+.tc-badge.B{background:rgba(217,119,6,.2);color:#fbbf24}
+.tc-badge.C{background:rgba(232,51,74,.2);color:#ff6b80}
+.tc-value{font-family:'Space Mono',monospace;font-size:18px;font-weight:700;color:#fff}
+.tc-sub{font-size:9px;color:rgba(255,255,255,.35)}
+.tc-bar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin-top:4px}
+.tc-bar-fill{height:100%;border-radius:2px;transition:width .8s ease}
+
 /* TABLE */
 .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .kpi-table{width:100%;border-collapse:collapse;font-size:11.5px;min-width:280px}
@@ -168,8 +184,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .pbar-fill{height:100%;border-radius:3px;transition:width .6s ease}
 .pbar-pct{font-family:'Space Mono',monospace;font-size:9.5px;color:rgba(255,255,255,.4);min-width:28px;text-align:right}
 
-@media(min-width:600px){.content{padding:20px 16px calc(20px + var(--safe-bottom))}.stat-grid{grid-template-columns:repeat(4,1fr)}.chart-grid{grid-template-columns:1fr 1fr}.sc-value{font-size:22px}.gauge-pct{font-size:17px}.chart-wrap canvas{max-height:200px}.chart-wrap.tall canvas{max-height:240px}}
-@media(min-width:960px){body{flex-direction:row}.topbar{left:var(--sw);padding:0 24px;}.ttitle{font-size:20px}.hamburger{display:none}.sidebar-backdrop{display:none}.sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sw);transform:translateX(0)!important;padding:20px 14px 24px;border-right:1px solid rgba(255,255,255,.05);}
+@media(min-width:600px){.content{padding:20px 16px calc(20px + var(--safe-bottom))}.stat-grid{grid-template-columns:repeat(4,1fr)}.tech-grid{grid-template-columns:repeat(4,1fr)}.chart-grid{grid-template-columns:1fr 1fr}.sc-value{font-size:22px}.gauge-pct{font-size:17px}.chart-wrap canvas{max-height:200px}.chart-wrap.tall canvas{max-height:240px}}
+@media(min-width:960px){body{flex-direction:row}.topbar{left:var(--sw);padding:0 24px;}.ttitle{font-size:20px}.hamburger{display:none}.sidebar-backdrop{display:none}.sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sw);transform:translateX(0)!important;padding:20px 14px 24px;}
 .main{margin-top:0;margin-left:var(--sw);height:100%;height:100dvh;padding-top:var(--topbar-h);}.content{padding:20px 24px}.stat-grid{grid-template-columns:repeat(4,1fr);gap:12px}.chart-grid{grid-template-columns:1fr 1fr;gap:14px}.gauge-row{gap:12px}.gauge-pct{font-size:18px}}
 </style>
 </head>
@@ -177,12 +193,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 <div class="load-overlay" id="loadOverlay">
 <div class="load-ring-wrap"><div class="load-ring"></div><div class="load-logo"><img src="https://lh3.googleusercontent.com/d/1ES-euNiP7XqrsflQXpnEIv23gMWXTerv" alt="Logo"></div></div>
 <div class="load-text">Loading Data<span class="load-dots"><span>.</span><span>.</span><span>.</span></span></div>
-<div class="load-sub">Fetching Advisor KPIs</div>
+<div class="load-sub">Fetching Technician KPIs</div>
 </div>
 <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()"></div>
 <aside class="sidebar" id="sidebar">
 <div class="logo-wrap"><img src="https://lh3.googleusercontent.com/d/1ES-euNiP7XqrsflQXpnEIv23gMWXTerv" alt="Logo"></div>
-<div class="brand"><div class="brand-name">VARUN MARUTI</div><div class="brand-sub">Advisor KPI</div></div>
+<div class="brand"><div class="brand-name">VARUN MARUTI</div><div class="brand-sub">Technician KPI</div></div>
 <div class="divider"></div>
 <div class="flabel">Channel</div>
 <div class="channel-toggle">
@@ -191,18 +207,18 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 </div>
 <div class="flabel">Workshop</div>
 <div class="swrap"><select id="selWorkshop"><option value="">— All Workshops —</option></select></div>
-<div class="flabel">Advisor</div>
-<div class="swrap"><select id="selEmployee" onchange="onSelect(this.value)"><option value="">— Select Advisor —</option></select></div>
+<div class="flabel">Technician</div>
+<div class="swrap"><select id="selEmployee" onchange="onSelect(this.value)"><option value="">— Select Technician —</option></select></div>
 <div class="divider"></div>
 <div class="pcard">
 <div class="pbanner"></div>
-<div class="aring" id="avatarRing"><span class="aicon">👤</span></div>
-<div class="pname" id="profileName">Select an Advisor</div>
+<div class="aring" id="avatarRing"><span class="aicon">🔧</span></div>
+<div class="pname" id="profileName">Select a Technician</div>
 <div class="pdesign" id="profileDesign">—</div>
 <div class="pmeta" id="profileMeta">
 <div class="mrow"><span>📅</span><span>DOJ</span><span class="mval" id="metaDOJ">—</span></div>
 <div class="mrow"><span>🏢</span><span>Workshop</span><span class="mval" id="metaWorkshop">—</span></div>
-<div class="mrow"><span>📋</span><span>Channel</span><span class="mval" id="metaChannel">—</span></div>
+<div class="mrow"><span>🔩</span><span>Grade</span><span class="mval" id="metaGrade">—</span></div>
 </div>
 </div>
 </aside>
@@ -210,24 +226,25 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 <div class="topbar">
 <div class="topbar-left">
 <div class="hamburger" id="hamburger" onclick="toggleSidebar()"><span></span><span></span><span></span></div>
-<div class="ttitle">Advisor <span>KPI</span> Overview</div>
+<div class="ttitle">Technical <span>Manpower</span> Overview</div>
 </div>
 <div class="tbadge"><div class="dot"></div>MTD&nbsp;·&nbsp;<b id="monthLabel">—</b></div>
 </div>
 <div class="content" id="contentArea">
 <div class="empty-state" id="emptyState">
-<div class="es-icon">📊</div>
-<div class="es-title">No Advisor Selected</div>
-<div class="es-sub">Tap ☰ to open the menu and choose an advisor</div>
+<div class="es-icon">🔧</div>
+<div class="es-title">No Technician Selected</div>
+<div class="es-sub">Tap ☰ to open the menu and choose a technician</div>
 </div>
 </div>
 </main>
 <script>
 Chart.register(ChartDataLabels);
 const $=id=>document.getElementById(id);
-let allData=[],currentChannel='WORKSHOP',activeAdvisor=null;
+let allData=[],currentChannel='WORKSHOP',activeTech=null;
 const chartInstances={};
 $('monthLabel').textContent=new Date().toLocaleString('default',{month:'short',year:'numeric'});
+// NOTE: Update this API_URL to the Technician-specific Google Apps Script endpoint
 const API_URL='https://script.google.com/macros/s/AKfycbw8TlOYZrLnavyCpjCYlpeR4ahdADEwQBFc78GmHzMkEWR7zJZXvUekrMnQ7hMbo7hePw/exec';
 function toggleSidebar(){const open=$('sidebar').classList.toggle('open');$('sidebarBackdrop').classList.toggle('open',open);$('hamburger').classList.toggle('open',open);}
 function closeSidebar(){$('sidebar').classList.remove('open');$('sidebarBackdrop').classList.remove('open');$('hamburger').classList.remove('open');}
@@ -235,41 +252,42 @@ async function loadData(){
 $('loadOverlay').classList.remove('hidden');
 try{const res=await fetch(API_URL);const raw=await res.json();allData=Array.isArray(raw)?raw:(raw.data||[]);}
 catch(e){console.warn('API fallback',e);allData=[
-{"empId":"MA013494","Name":"DEMUDU BABU GOGADA","design":"Asst. Service Advisor","imageId":"1rYVB6Pk-c__m2W-gZpEvDsTzOLPiAmNZ","doj":"2018-01-08T18:30:00.000Z","location":"100FT RING ROAD-2S","Channel":"WORKSHOP","MTDtarget":45,"Achieved":37,"LabTarget":99000,"LabAchieved":47697,"PerCar":1289,"VASlabour":10100,"PureLab":37598,"Tyres":"","Batteries":"","AMCBooks":"","CCP_PMS":"","EW_PowerPlus":"","EW_Extension":"","TimeEstimation":"","CostEstimation":""},
-{"empId":"MA018144","Name":"A CHITTIBABU","design":"Service Advisor","imageId":"1bjrxEBnm_J0L8RKqSvCBAZZjOZvB96z8","doj":"2025-07-02T18:30:00.000Z","location":"ADAVIVARAM-2S","Channel":"BODYSHOP","MTDtarget":90,"Achieved":55,"LabTarget":198000,"LabAchieved":93694,"PerCar":1704,"VASlabour":29168,"PureLab":64526,"Tyres":"3","Batteries":"2","AMCBooks":"","CCP_PMS":"5","EW_PowerPlus":"","EW_Extension":"","TimeEstimation":"Y","CostEstimation":""}
+{"empId":"TK001","Name":"RAVI KUMAR NAYAK","design":"Senior Technician","grade":"A","imageId":"","doj":"2019-03-15T18:30:00.000Z","location":"100FT RING ROAD-2S","Channel":"WORKSHOP","MTDtarget":120,"Achieved":98,"LabTarget":240000,"LabAchieved":185000,"PerCar":1887,"VASlabour":35000,"PureLab":150000,"Efficiency":82,"Tyres":"2","Batteries":"1","AMCBooks":"","CCP_PMS":"3","EW_PowerPlus":"","EW_Extension":"","TimeEstimation":"Y","CostEstimation":"Y"},
+{"empId":"TK002","Name":"SURESH BABU YADAV","design":"Technician","grade":"B","imageId":"","doj":"2021-06-01T18:30:00.000Z","location":"AGANAMPUDI-SRV","Channel":"WORKSHOP","MTDtarget":90,"Achieved":72,"LabTarget":180000,"LabAchieved":128000,"PerCar":1778,"VASlabour":22000,"PureLab":106000,"Efficiency":70,"Tyres":"","Batteries":"2","AMCBooks":"","CCP_PMS":"","EW_PowerPlus":"","EW_Extension":"","TimeEstimation":"","CostEstimation":"Y"}
 ];}
 populateWorkshops();populateAdvisors();$('loadOverlay').classList.add('hidden');
 }
 function getChannelData(){return allData.filter(d=>{const ch=(d.Channel||'').trim().toUpperCase();if(currentChannel==='BODYSHOP')return ch==='BODYSHOP';if(currentChannel==='WORKSHOP')return ch!=='BODYSHOP';return true;});}
 function populateWorkshops(){const data=getChannelData();const locations=[...new Set(data.map(d=>d.location).filter(Boolean))].sort();const ws=$('selWorkshop');ws.innerHTML='<option value="">— All Workshops —</option>';locations.forEach(l=>{const o=document.createElement('option');o.value=l;o.textContent=l;ws.appendChild(o);});}
-function populateAdvisors(){const ws=$('selWorkshop').value;let data=getChannelData();if(ws)data=data.filter(d=>d.location===ws);const sel=$('selEmployee');const prev=sel.value;sel.innerHTML='<option value="">— Select Advisor —</option>';data.forEach(d=>{const o=document.createElement('option');o.value=d.empId;o.textContent=d.Name;sel.appendChild(o);});if(prev&&[...sel.options].some(o=>o.value===prev))sel.value=prev;}
-function onSelect(empId){if(!empId){showEmpty();return;}const d=allData.find(x=>x.empId===empId);if(!d)return;activeAdvisor=d;updateProfile(d);renderDashboard(d);if(window.innerWidth<960)closeSidebar();}
-function updateProfile(d){const ring=$('avatarRing');ring.innerHTML=d.imageId?`<img src="https://lh3.googleusercontent.com/d/${d.imageId}" alt="${d.Name}" onerror="this.parentNode.innerHTML='<span class=aicon>👤</span>'">`:'<span class="aicon">👤</span>';$('profileName').textContent=d.Name||'—';$('profileDesign').textContent=d.design||'—';$('metaDOJ').textContent=d.doj?new Date(d.doj).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'—';$('metaWorkshop').textContent=(d.location||'—').replace(/-2S.*$/,'').trim();$('metaChannel').textContent=d.Channel||'—';}
+function populateAdvisors(){const ws=$('selWorkshop').value;let data=getChannelData();if(ws)data=data.filter(d=>d.location===ws);const sel=$('selEmployee');const prev=sel.value;sel.innerHTML='<option value="">— Select Technician —</option>';data.forEach(d=>{const o=document.createElement('option');o.value=d.empId;o.textContent=d.Name;sel.appendChild(o);});if(prev&&[...sel.options].some(o=>o.value===prev))sel.value=prev;}
+function onSelect(empId){if(!empId){showEmpty();return;}const d=allData.find(x=>x.empId===empId);if(!d)return;activeTech=d;updateProfile(d);renderDashboard(d);if(window.innerWidth<960)closeSidebar();}
+function updateProfile(d){const ring=$('avatarRing');ring.innerHTML=d.imageId?`<img src="https://lh3.googleusercontent.com/d/${d.imageId}" alt="${d.Name}" onerror="this.parentNode.innerHTML='<span class=aicon>🔧</span>'">`:'<span class="aicon">🔧</span>';$('profileName').textContent=d.Name||'—';$('profileDesign').textContent=d.design||'—';$('metaDOJ').textContent=d.doj?new Date(d.doj).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'—';$('metaWorkshop').textContent=(d.location||'—').replace(/-2S.*$/,'').trim();$('metaGrade').textContent=d.grade||'—';}
 const fmt=n=>(!n&&n!==0)?'—':typeof n==='number'?n.toLocaleString('en-IN'):n;
 const fmtK=n=>{if(!n&&n!==0)return'—';const a=Math.abs(n);if(a>=100000)return'₹'+(n/100000).toFixed(1)+'L';if(a>=1000)return'₹'+(n/1000).toFixed(1)+'K';return'₹'+n;};
 const pct=(a,b)=>!b?0:Math.min(100,(a/b)*100);
 const badgeByPct=p=>p>=80?'good':p>=50?'warn':'bad';
 function destroyChart(id){if(chartInstances[id]){chartInstances[id].destroy();delete chartInstances[id];}}
-function showEmpty(){$('contentArea').innerHTML=`<div class="empty-state"><div class="es-icon">📊</div><div class="es-title">No Advisor Selected</div><div class="es-sub">Tap ☰ to open the menu and choose an advisor</div></div>`;}
+function showEmpty(){$('contentArea').innerHTML=`<div class="empty-state"><div class="es-icon">🔧</div><div class="es-title">No Technician Selected</div><div class="es-sub">Tap ☰ to open the menu and choose a technician</div></div>`;}
 function renderDashboard(d){
-const carAch=pct(d.Achieved,d.MTDtarget),labAch=pct(d.LabAchieved,d.LabTarget),vasRatio=d.LabAchieved>0?pct(d.VASlabour,d.LabAchieved):0;
-const mtdTarget=Math.round(d.MTDtarget||0),mtdAchieved=Math.round(d.Achieved||0);
+const jobAch=pct(d.Achieved,d.MTDtarget),labAch=pct(d.LabAchieved,d.LabTarget),vasRatio=d.LabAchieved>0?pct(d.VASlabour,d.LabAchieved):0;
+const efficiency=Number(d.Efficiency||0),mtdTarget=Math.round(d.MTDtarget||0),mtdAchieved=Math.round(d.Achieved||0);
+const gradeCls=d.grade==='A'?'good':d.grade==='B'?'warn':'bad';
 $('contentArea').innerHTML=`
 <div class="stat-grid">
-<div class="stat-card red"><div class="sc-label">Load — MTD Target</div><div class="sc-value">${fmt(mtdTarget)}</div><div class="sc-sub">Achieved: <b style="color:#fff">${fmt(mtdAchieved)}</b></div><span class="sc-badge ${badgeByPct(carAch)}">▲ ${carAch.toFixed(1)}%</span></div>
-<div class="stat-card teal"><div class="sc-label">Labour Target</div><div class="sc-value">${fmtK(d.LabTarget)}</div><div class="sc-sub">Achieved: <b style="color:#fff">${fmtK(d.LabAchieved)}</b></div><span class="sc-badge ${badgeByPct(labAch)}">▲ ${labAch.toFixed(1)}%</span></div>
-<div class="stat-card green"><div class="sc-label">Per RO</div><div class="sc-value">${fmt(d.PerCar)}</div><div class="sc-sub">VAS Labour: ${fmtK(d.VASlabour)}</div></div>
-<div class="stat-card amber"><div class="sc-label">Pure Labour</div><div class="sc-value">${fmtK(d.PureLab)}</div><div class="sc-sub">VAS%: <b style="color:#fff">${vasRatio.toFixed(1)}%</b></div></div>
+<div class="stat-card teal"><div class="sc-label">Jobs — MTD Target</div><div class="sc-value">${fmt(mtdTarget)}</div><div class="sc-sub">Achieved: <b style="color:#fff">${fmt(mtdAchieved)}</b></div><span class="sc-badge ${badgeByPct(jobAch)}">▲ ${jobAch.toFixed(1)}%</span></div>
+<div class="stat-card violet"><div class="sc-label">Labour Target</div><div class="sc-value">${fmtK(d.LabTarget)}</div><div class="sc-sub">Achieved: <b style="color:#fff">${fmtK(d.LabAchieved)}</b></div><span class="sc-badge ${badgeByPct(labAch)}">▲ ${labAch.toFixed(1)}%</span></div>
+<div class="stat-card green"><div class="sc-label">Per Job</div><div class="sc-value">${fmt(d.PerCar)}</div><div class="sc-sub">VAS Labour: ${fmtK(d.VASlabour)}</div></div>
+<div class="stat-card amber"><div class="sc-label">Efficiency</div><div class="sc-value">${efficiency}%</div><div class="sc-sub">Grade: <b style="color:#fff" class="sc-badge ${gradeCls}">${d.grade||'—'}</b></div></div>
 </div>
 <div class="section-title">Achievement Meters</div>
 <div class="gauge-row">
-<div class="gauge-card"><div class="gauge-label">Load Achievement</div><div class="gauge-wrap"><canvas id="gaugeCarAch"></canvas><div class="gauge-pct">${carAch.toFixed(0)}%</div></div></div>
+<div class="gauge-card"><div class="gauge-label">Job Achievement</div><div class="gauge-wrap"><canvas id="gaugeCarAch"></canvas><div class="gauge-pct">${jobAch.toFixed(0)}%</div></div></div>
 <div class="gauge-card"><div class="gauge-label">Labour Achievement</div><div class="gauge-wrap"><canvas id="gaugeLabAch"></canvas><div class="gauge-pct">${labAch.toFixed(0)}%</div></div></div>
-<div class="gauge-card"><div class="gauge-label">VAS Labour Mix</div><div class="gauge-wrap"><canvas id="gaugeVAS"></canvas><div class="gauge-pct">${vasRatio.toFixed(0)}%</div></div></div>
+<div class="gauge-card"><div class="gauge-label">Efficiency</div><div class="gauge-wrap"><canvas id="gaugeVAS"></canvas><div class="gauge-pct">${efficiency}%</div></div></div>
 </div>
 <div class="section-title">KPI Breakdown</div>
 <div class="chart-grid">
-<div class="chart-card"><div class="chart-title">Cars — Target vs Achieved</div><div class="chart-wrap"><canvas id="chartCars"></canvas></div></div>
+<div class="chart-card"><div class="chart-title">Jobs — Target vs Achieved</div><div class="chart-wrap"><canvas id="chartCars"></canvas></div></div>
 <div class="chart-card"><div class="chart-title">Labour — Target vs Achieved</div><div class="chart-wrap"><canvas id="chartLabour"></canvas></div></div>
 <div class="chart-card"><div class="chart-title">Labour Breakup</div><div class="chart-wrap"><canvas id="chartLabBreak"></canvas></div></div>
 <div class="chart-card"><div class="chart-title">Achievement % Overview</div><div class="chart-wrap tall"><canvas id="chartAchPct"></canvas></div></div>
@@ -278,13 +296,13 @@ $('contentArea').innerHTML=`
 <div class="chart-card">
 <div class="table-scroll"><table class="kpi-table"><thead><tr><th>KPI Metric</th><th>Status</th><th>Progress</th></tr></thead><tbody id="addonBody"></tbody></table></div>
 </div>`;
-drawGauge('gaugeCarAch',carAch,'#f59e0b');drawGauge('gaugeLabAch',labAch,'#f59e0b');drawGauge('gaugeVAS',vasRatio,'#f59e0b');
-drawBarChart('chartCars',['Target','Achieved'],[mtdTarget,mtdAchieved],['rgba(232,51,74,.3)','rgba(5,150,105,.3)'],['rgba(232,51,74,1)','rgba(5,150,105,1)'],{});
-drawBarChart('chartLabour',['Target','Achieved'],[d.LabTarget,d.LabAchieved],['rgba(8,145,178,.3)','rgba(124,58,237,.3)'],['rgba(8,145,178,1)','rgba(124,58,237,1)'],{kformat:true});
-drawDoughnut('chartLabBreak',['VAS Labour','Pure Labour'],[Number(d.VASlabour)||0,Number(d.PureLab)||0],['rgba(217,119,6,.85)','rgba(8,145,178,.85)']);
-drawHorizBar('chartAchPct',['Cars Ach%','Labour Ach%','VAS Mix%'],[+carAch.toFixed(1),+labAch.toFixed(1),+vasRatio.toFixed(1)]);
+drawGauge('gaugeCarAch',jobAch,'#00C8E0');drawGauge('gaugeLabAch',labAch,'#9D6FFF');drawGauge('gaugeVAS',efficiency,'#00E5A0');
+drawBarChart('chartCars',['Target','Achieved'],[mtdTarget,mtdAchieved],['rgba(8,145,178,.3)','rgba(5,150,105,.3)'],['rgba(8,145,178,1)','rgba(5,150,105,1)'],{});
+drawBarChart('chartLabour',['Target','Achieved'],[d.LabTarget,d.LabAchieved],['rgba(124,58,237,.3)','rgba(8,145,178,.3)'],['rgba(124,58,237,1)','rgba(8,145,178,1)'],{kformat:true});
+drawDoughnut('chartLabBreak',['VAS Labour','Pure Labour'],[Number(d.VASlabour)||0,Number(d.PureLab)||0],['rgba(8,145,178,.85)','rgba(124,58,237,.85)']);
+drawHorizBar('chartAchPct',['Jobs Ach%','Labour Ach%','Efficiency%'],[+jobAch.toFixed(1),+labAch.toFixed(1),efficiency]);
 const addons=[['Tyres',d.Tyres],['Batteries',d.Batteries],['AMC Books',d.AMCBooks],['CCP / PMS',d.CCP_PMS],['EW Power Plus',d.EW_PowerPlus],['EW Extension',d.EW_Extension],['Time Estimation',d.TimeEstimation],['Cost Estimation',d.CostEstimation]];
-$('addonBody').innerHTML=addons.map(([label,val])=>{const v=(val===''||val==null)?null:val;const barW=v?Math.min(100,(Number(v)||1)*10):0;return`<tr><td>${label}</td><td><span class="pill ${v?'g':'n'}">${v||'N/A'}</span></td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" style="width:${barW}%;background:${v?'rgba(5,150,105,.8)':'rgba(255,255,255,.07)'}"></div></div><span class="pbar-pct">${v||'—'}</span></div></td></tr>`;}).join('');
+$('addonBody').innerHTML=addons.map(([label,val])=>{const v=(val===''||val==null)?null:val;const barW=v?Math.min(100,(Number(v)||1)*10):0;return`<tr><td>${label}</td><td><span class="pill ${v?'g':'n'}">${v||'N/A'}</span></td><td><div class="pbar-wrap"><div class="pbar"><div class="pbar-fill" style="width:${barW}%;background:${v?'rgba(8,145,178,.8)':'rgba(255,255,255,.07)'}"></div></div><span class="pbar-pct">${v||'—'}</span></div></td></tr>`;}).join('');
 }
 function drawGauge(id,value,color){destroyChart(id);const ctx=document.getElementById(id)?.getContext('2d');if(!ctx)return;const v=Math.min(100,Math.max(0,value));chartInstances[id]=new Chart(ctx,{type:'doughnut',data:{datasets:[{data:[v,100-v],backgroundColor:[color,'rgba(255,255,255,0.08)'],borderWidth:0,circumference:180,rotation:270}]},options:{cutout:'75%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{enabled:false},datalabels:{display:false}}}});}
 function drawBarChart(id,labels,data,bgColors,borderColors,opts={}){destroyChart(id);const ctx=document.getElementById(id)?.getContext('2d');if(!ctx)return;const isK=opts.kformat;chartInstances[id]=new Chart(ctx,{type:'bar',data:{labels,datasets:[{data,backgroundColor:bgColors,borderColor:borderColors,borderWidth:2,borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},datalabels:{color:'#c8d4f0',font:{family:'Space Mono',size:9,weight:'600'},formatter:v=>isK?(v>=100000?'₹'+(v/100000).toFixed(1)+'L':v>=1000?'₹'+(v/1000).toFixed(1)+'K':'₹'+v):String(v)}},scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#7a8baa',font:{size:10}}},y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#7a8baa',font:{size:9},callback:v=>isK?(v>=100000?(v/100000).toFixed(0)+'L':v>=1000?(v/1000).toFixed(0)+'K':v):v}}}}});}
