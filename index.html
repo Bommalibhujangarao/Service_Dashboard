@@ -279,7 +279,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 </nav>
 <script>
 document.addEventListener('contextmenu',e=>e.preventDefault());
-<!--document.onkeydown=e=>{if(e.keyCode===123||(e.ctrlKey&&e.shiftKey&&e.keyCode===73)||(e.ctrlKey&&e.keyCode===85))return false;};-->
+document.onkeydown=e=>{if(e.keyCode===123||(e.ctrlKey&&e.shiftKey&&e.keyCode===73)||(e.ctrlKey&&e.keyCode===85))return false;};
 Chart.register(ChartDataLabels);
 const API_URL="https://script.google.com/macros/s/AKfycbwQMksBtwCcRr0gkFHMdtlCuhElexU_fh1fDlOA69ECjZBxJXW4ywutrWm_5x5hkxWk/exec";
 const C={red:'#FF3355',amber:'#F5A623',teal:'#00C8E0',green:'#00E5A0',violet:'#9D6FFF',pink:'#FF5FA0'};
