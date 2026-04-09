@@ -125,19 +125,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .menu-toggle:hover{background:var(--s3)}
 .menu-toggle span{display:block;width:16px;height:1.5px;background:var(--t2);border-radius:2px;transition:all .25s}
 .ttitle-group{display:flex;flex-direction:column;gap:1px}
-.teyebrow{  font-size:18px;  font-weight:800;  letter-spacing:8px;  text-transform:uppercase;  color:#ff0000;  opacity:.8;  text-shadow:2px 2px 0 #000,5px 5px 5px rgba(0,0,0,0.5);}
-.teyebrow{
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:8px;
-  text-transform:uppercase;
-  color:#f2d174;
-  opacity:.9;
-  text-shadow:
-    0 0 2px #f2d174,
-    0 0 6px rgba(242,209,116,0.8),
-    0 0 12px rgba(242,209,116,0.6);
-}
+.teyebrow{  font-size:18px;  font-weight:800;  letter-spacing:8px;  text-transform:uppercase;  color:#1c3ee8;  opacity:.9;  text-shadow:1px 1px 0 #000,2px 2px 5px rgba(0,0,0,0.5);}
+
 .ttitle{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--t1);line-height:1.2}
 .ttitle span{color:var(--red)}
 .tr{display:flex;align-items:center;gap:10px;flex-shrink:0}
@@ -161,11 +150,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .kcard.green::before{background:linear-gradient(90deg,var(--green),rgba(5,150,105,0.1))}
 .kcard.violet::before{background:linear-gradient(90deg,var(--violet),rgba(124,58,237,0.1))}
 .kcard.pink::before{background:linear-gradient(90deg,var(--pink),rgba(219,39,119,0.1))}
-.klabel{font-size:14px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.9);text-transform:uppercase;margin-bottom:2px}
+.klabel{font-size:14px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,0,.9);text-transform:uppercase;margin-bottom:12px}
 .kvals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;}
 .kv-item{display:flex;flex-direction:column;gap:2px;}
-.kv-tag{font-size:7.5px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.35);text-transform:uppercase;display:inline-flex;align-items:center;gap:3px}
-.kv-tag::before{content:'';width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.4}
+.kv-tag{font-size:7px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.95);text-transform:uppercase;display:inline-flex;align-items:center;gap:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.kv-tag::before{content:'';width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.9}
 .kv-num{font-family:'Space Mono',monospace;font-size:15px;font-weight:700;line-height:1.2;letter-spacing:-0.5px}
 .kcard.red .kv-num{color:#ff6b80}
 .kcard.amber .kv-num{color:#fbbf24}
@@ -173,7 +162,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .kcard.green .kv-num{color:#34d399}
 .kcard.violet .kv-num{color:#a78bfa}
 .kcard.pink .kv-num{color:#f472b6}
-.kbar{height:2px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-bottom:8px}
+.kbar{height:2px;background:rgba(255,255,255,.6);border-radius:2px;overflow:hidden;margin-bottom:8px}
 .kfill{height:100%;border-radius:2px;transition:width 1.4s cubic-bezier(.6,0,.2,1)}
 .kcard.red .kfill{background:linear-gradient(90deg,var(--red),rgba(232,51,74,0.4))}
 .kcard.amber .kfill{background:linear-gradient(90deg,var(--amber),rgba(217,119,6,0.4))}
@@ -182,8 +171,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .kcard.violet .kfill{background:linear-gradient(90deg,var(--violet),rgba(124,58,237,0.4))}
 .kcard.pink .kfill{background:linear-gradient(90deg,var(--pink),rgba(219,39,119,0.4))}
 .kpct{font-size:10px;display:flex;align-items:center;gap:4px;justify-content:space-between}
-.kpct-label{color:rgba(255,255,255,.3);font-size:9px;font-family:'Space Mono',monospace}
-.kpct-growth{font-weight:700;font-family:'Space Mono',monospace;font-size:9.5px;padding:2px 6px;border-radius:5px}
+.kpct-label{color:rgba(255,255,255,.9);font-size:14px;font-family:'Space Mono',monospace}
+.kpct-growth{font-weight:800;font-family:'Space Mono',monospace;font-size:14px;padding:2px 6px;border-radius:5px}
 .growth-up{color:#34d399;background:rgba(52,211,153,.1)}
 .growth-down{color:#ff6b80;background:rgba(232,51,74,.1)}
 .growth-flat{color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
@@ -297,21 +286,20 @@ function closeSidebarOnMobile(){if(window.innerWidth<=700)closeSidebar();}
 const KPI_DEFS=[
   {label:'Ser Load',ly:'LY_S_Load',cy:'CY_S_Load',col:'red',section:'Service Repairs',lakh:false},
   {label:'Ser Labour',ly:'LY_S_Labour',cy:'CY_S_Labour',col:'amber',section:'Service Repairs',lakh:true},
-  {label:'Ser Per RO',col:'teal',section:'Service Repairs',lakh:false,perRO:true,lyLab:'LY_S_Labour',lyLoad:'LY_S_Load',cyLab:'CY_S_Labour',cyLoad:'CY_S_Load'},
+  {label:'Ser Per Car',col:'teal',section:'Service Repairs',lakh:false,perRO:true,lyLab:'LY_S_Labour',lyLoad:'LY_S_Load',cyLab:'CY_S_Labour',cyLoad:'CY_S_Load'},
   {label:'Ser Spares',ly:'LY_S_MSGP',cy:'CY_S_MSGP',col:'green',section:'Service Repairs',lakh:true},
   {label:'FSC Load',ly:'LY_FSC_LOAD',cy:'CY_FSC_LOAD',col:'violet',section:'Service Repairs',lakh:false},
   {label:'PMS Load',ly:'LY_PMS_LOAD',cy:'CY_PMS_LOAD',col:'pink',section:'Service Repairs',lakh:false},
   {label:'RR Load',ly:'LY_RR_LOAD',cy:'CY_RR_LOAD',col:'red',section:'Service Repairs',lakh:false},
   {label:'Ser Holdup',ly:'CY_S_Load',cy:'Ser_Holdup',col:'amber',section:'Service Repairs',lakh:false},
   {label:'Ser OCAS',ly:'CY_S_Load',cy:'CY_S_DIY',col:'teal',section:'Service Repairs',lakh:false},
-  {label:'EW Sold',ly:'CY_S_Load',cy:'EW_Extended',col:'green',section:'Value-Add',lakh:false},
   {label:'AMC Books',ly:'CY_S_Load',cy:'AMC_Books',col:'violet',section:'Value-Add',lakh:false},
   {label:'CCP With PMS',ly:'CY_S_Load',cy:'CCP_PMS',col:'pink',section:'Value-Add',lakh:false},
   {label:'EW Extension',ly:'CY_S_Load',cy:'EW_Extended',col:'red',section:'Value-Add',lakh:false},
   {label:'EW Power Plus',ly:'CY_S_Load',cy:'EW_Power_Plus',col:'amber',section:'Value-Add',lakh:false},
   {label:'BS Load',ly:'LY_B_Load',cy:'CY_B_Load',col:'teal',section:'Body Shop',lakh:false},
   {label:'BS Labour',ly:'LY_B_Labour',cy:'CY_B_Labour',col:'green',section:'Body Shop',lakh:true},
-  {label:'BS Per RO',col:'violet',section:'Body Shop',lakh:false,perRO:true,lyLab:'LY_B_Labour',lyLoad:'LY_B_Load',cyLab:'CY_B_Labour',cyLoad:'CY_B_Load'},
+  {label:'BS Per Car',col:'violet',section:'Body Shop',lakh:false,perRO:true,lyLab:'LY_B_Labour',lyLoad:'LY_B_Load',cyLab:'CY_B_Labour',cyLoad:'CY_B_Load'},
   {label:'BS Spares',ly:'LY_B_MSGP',cy:'CY_B_MSGP',col:'green',section:'Body Shop',lakh:true},
   {label:'BS Holdup',ly:'LY_B_Load',cy:'BS_Holdup',col:'pink',section:'Body Shop',lakh:false},
   {label:'BS OCAS',ly:'LY_B_Load',cy:'BS_Smart_Eye',col:'red',section:'Body Shop',lakh:false},
@@ -415,7 +403,9 @@ function renderDashboard(data){
       if(k.perRO)srtDisplay=(SRT>=0?'+':'')+'₹'+Math.abs(SRT).toLocaleString('en-IN');
       else if(k.lakh)srtDisplay=(SRT>0?'+':'')+fmtL(SRT);
       else srtDisplay=(SRT>0?'+':'')+SRT.toLocaleString('en-IN');
-      html+=`<div class="kcard ${k.col}"><div class="klabel">${k.label}</div><div class="kvals"><div class="kv-item"><div class="kv-tag">LY</div><div class="kv-num">${fmtVal(LY)}</div></div><div class="kv-item"><div class="kv-tag">CY</div><div class="kv-num">${fmtVal(CY)}</div></div></div><div class="kbar"><div class="kfill" style="width:0%" data-w="${pctBar}"></div></div><div class="kpct"><span class="kpct-label">${srtLabel} ${srtDisplay}</span><span class="kpct-growth ${growthCls}">${growthTxt}</span></div></div>`;
+      const lySeriesLabel=k.perRO?(k.lyLab||'LY'):( k.ly||'LY');
+      const cySeriesLabel=k.perRO?(k.cyLab||'CY'):(k.cy||'CY');
+      html+=`<div class="kcard ${k.col}"><div class="klabel">${k.label}</div><div class="kvals"><div class="kv-item"><div class="kv-tag" title="${lySeriesLabel}">${lySeriesLabel}</div><div class="kv-num">${fmtVal(LY)}</div></div><div class="kv-item"><div class="kv-tag" title="${cySeriesLabel}">${cySeriesLabel}</div><div class="kv-num">${fmtVal(CY)}</div></div></div><div class="kbar"><div class="kfill" style="width:0%" data-w="${pctBar}"></div></div><div class="kpct"><span class="kpct-label">${srtLabel} ${srtDisplay}</span><span class="kpct-growth ${growthCls}">${growthTxt}</span></div></div>`;
     });
     html+='</div>';
   });
